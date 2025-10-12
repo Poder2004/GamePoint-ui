@@ -1,73 +1,84 @@
-/* 1. ตรวจสอบว่า .home-container ยังมี padding อยู่ (โค้ดเดิม) */
+/* 🏠 Home Container */
 .home-container {
   width: 100%;
   max-width: 100%;
-  padding: 0 30px; /* <--- ต้องมี padding ตรงนี้อยู่ */
+  padding: 0 30px;
   box-sizing: border-box;
-  background-color: #fffcfc;
+  background: linear-gradient(135deg, #f7faff 0%, #fff5f8 100%);
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
+/* ขนาด container กลาง */
 .container {
   padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* หัวข้อหลัก */
 h2 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #333;
+  color: #2b2b2b;
   margin-bottom: 8px;
+  text-align: center;
 }
 
+/* คำอธิบายหัวข้อ */
 .section-subtitle {
-  color: #616161;
+  color: #666;
   margin-bottom: 24px;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
+/* แต่ละ Section */
 .section {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
-/* Banners Section */
+/* 🎯 Banners Section */
 .banners-section {
   display: flex;
   justify-content: center;
-  align-items: center; /* << แก้ตรงนี้: สั่งให้ทุก item สูงเท่ากัน */
+  align-items: stretch;
   gap: 20px;
   width: 100%;
 }
 
-/* สไตล์สำหรับแบนเนอร์ด้านข้าง */
 .banner-side {
-  width: 300px;
+  width: 280px;
   flex-shrink: 0;
 }
 
-/* สไตล์สำหรับแบนเนอร์หลักตรงกลาง */
 .banner-main {
   flex-grow: 1;
   width: 500px;
 }
 
-/* สไตล์ของ "การ์ด" */
 .banner-card {
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   line-height: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  height: 100%; /* << เพิ่มตรงนี้: ให้การ์ดสูงเต็มพื้นที่ที่ได้รับ */
+
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ทำให้รูปภาพแสดงผลได้ถูกต้องในการ์ด */
+.banner-card:hover {
+  transform: translateY(-5px);
+
+}
+
 .banner-card img {
   width: 100%;
-  height: 100%; /* << เพิ่มตรงนี้: ให้รูปสูงเต็มการ์ด */
-  object-fit: cover; /* << เพิ่มตรงนี้: ทำให้รูปเต็มกรอบโดยไม่เสียสัดส่วน */
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-/* Coupons Section */
+/* 🎟️ Coupons Section */
 .horizontal-scroll-container {
   display: flex;
   gap: 16px;
@@ -75,34 +86,23 @@ h2 {
   padding-bottom: 16px;
 }
 
-/* 💡 สไตล์เก่าของคูปองถูกซ่อน/แทนที่ */
-.coupon-card {
-  display: none; /* ซ่อนคลาสเก่าที่ใช้ Mat-Card */
-}
-.coupon-card h3,
-.coupon-card .discount,
-.coupon-card .details {
-  display: none;
-}
-
-/* 💡 สไตล์ใหม่สำหรับคูปอง (coupon-card-alt) - ตามรูปภาพที่ต้องการ */
 .coupon-card-alt {
-  flex: 0 0 220px; /* ขยายความกว้างให้ใหญ่ขึ้นเล็กน้อยเพื่อให้มีพื้นที่สำหรับป้ายราคา */
+  flex: 0 0 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #ffffff;
+  background: #ffffff;
   border: 2px solid #a3e635;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  height: 250px; /* กำหนดความสูง */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px;
 }
 
 .coupon-card-alt:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .coupon-content {
@@ -111,144 +111,136 @@ h2 {
 }
 
 .discount-label {
-  font-size: 2.2rem; /* ขนาดใหญ่มาก */
+  font-size: 2.2rem;
   font-weight: 800;
-  color: #d90000; /* สีแดงเข้มสำหรับส่วนลด */
+  color: #e63946;
   margin-bottom: 8px;
-  line-height: 1;
 }
 
 .code-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 4px;
+  color: #222;
+  margin-bottom: 6px;
 }
 
 .code-description {
   font-size: 0.85rem;
-  color: #616161;
+  color: #666;
   min-height: 30px;
 }
 
 .coupon-footer {
   padding: 10px 16px 16px;
-  border-top: 1px dashed #cccccc; /* เส้นประ */
+  border-top: 1px dashed #ccc;
   text-align: center;
 }
 
 .code-condition {
-  font-size: 0.75rem;
-  color: #007c34; /* สีเขียวสำหรับเงื่อนไข */
+  font-size: 0.8rem;
+  color: #007c34;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
-/* === สไตล์ปุ่มที่เราสร้างเอง === */
-
 .custom-buy-button {
-  background-color: #00a246; /* สีพื้นหลัง (สีเขียว) */
-  color: white; /* สีตัวอักษร (สีขาว) */
-
-  border: none; /* เอาเส้นขอบเดิมๆ ของปุ่มออก */
-  border-radius: 8px; /* ทำให้ขอบปุ่มโค้งมน */
-
-  padding: 12px 24px; /* เพิ่มระยะห่างภายในปุ่ม (บนล่าง 12px, ซ้ายขวา 24px) */
-  font-size: 1rem; /* ขนาดตัวอักษร (16px) */
-  font-weight: bold; /* ทำให้ตัวอักษรเป็นตัวหนา */
-
-  cursor: pointer; /* เปลี่ยนเมาส์เป็นรูปมือเมื่อชี้ */
-
-  transition: background-color 0.2s ease; /* เพิ่มเอฟเฟกต์ตอนเปลี่ยนสีให้ดูนุ่มนวล */
-
-  /* 💡 ปรับแต่งสำหรับปุ่มใน coupon-card-alt */
-  width: 100%;
+  background-color: #00a246;
+  color: white;
+  border: none;
+  border-radius: 8px;
   padding: 8px;
   font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-/* สไตล์เมื่อเอาเมาส์ไปชี้ (Hover) */
 .custom-buy-button:hover {
-  background-color: #008f3c; /* ทำให้สีพื้นหลังเข้มขึ้นเล็กน้อย */
+  background-color: #008f3c;
+  transform: translateY(-2px);
 }
 
-/* สไตล์เมื่อกำลังคลิกปุ่ม (Active) */
 .custom-buy-button:active {
-  background-color: #007c34; /* ทำให้สีพื้นหลังเข้มขึ้นไปอีก */
-  transform: translateY(1px); /* ทำให้ปุ่มดูเหมือนถูกกดลงไปเล็กน้อย */
+  background-color: #007c34;
+  transform: translateY(1px);
 }
 
-/* Special Offers Section */
-/* โค้ดใหม่ (ไม่มีแถบเลื่อน, รายการจะตกไปบรรทัดใหม่) */
+/* 💰 Offers Section */
+.offers-section {
+  text-align: center;
+}
+
 .offers-scroll-container {
   display: flex;
   flex-wrap: wrap;
-  /* <--- เพิ่ม property นี้เข้าไป */
   gap: 1.5rem;
-  /* overflow-x: auto; <-- ลบหรือคอมเมนต์บรรทัดนี้ออก */
+  justify-content: center;
   padding-bottom: 1rem;
 }
 
 .offer-card {
-  background-color: #4a4a4a;
-  width: 200px;
-  border-radius: 10px;
-  position: relative;
-  overflow: visible;
-}
-
-.offer-card .offer-image-placeholder {
-  height: 120px;
-  background-color: #666;
-  border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, #ffffff, #f8f9fa);
+  width: 220px;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   position: relative;
 }
+
+.offer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.offer-image-placeholder {
+  height: 140px;
+  background-color: #e0e0e0;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+}
+
 .offer-image-placeholder .game-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่โดยไม่เสียสัดส่วน */
-  display: block;
-}
-
-.offer-card mat-card-content {
-  padding: 1rem !important;
+  object-fit: cover;
 }
 
 .offer-card .offer-title {
-  font-size: 0.9rem;
-  color: #e0e0e0;
-  margin-bottom: 1rem;
-  height: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
 }
 
-/* จัดปุ่มให้อยู่กึ่งกลางแถว (ถ้าต้องการ) */
+.offer-price {
+  color: #008f3c;
+  font-weight: 700;
+  margin: 0.3rem 0 1rem;
+}
+
 .nav-links-row {
   display: flex;
   justify-content: center;
 }
 
-/* สไตล์ปุ่มให้เหมือนรูป */
 .nav-link.game-btn {
-  background: #a7cf78; /* เขียวอ่อน */
-  color: #000000; /* ชมพูเข้ม */
+  background: #a7cf78;
+  color: #000;
   border: none;
-  width: auto; /* ความกว้างอัตโนมัติตามเนื้อหา */
-  border-radius: 14px; /* ขอบมน */
+  border-radius: 10px;
   padding: 8px 20px;
-  min-width: 140px; /* กำหนดความกว้างเพื่อให้ดูเป็นแท่ง */
-  display: inline-flex; /* จัดข้อความให้อยู่กลางทั้งแนวแกน X/Y */
-  align-items: center;
-  justify-content: center;
+  min-width: 140px;
   font-weight: 600;
-  text-transform: none; /* ไม่แปลงเป็นตัวพิมพ์ใหญ่ */
-  box-shadow: none;
+  transition: all 0.2s ease;
 }
 
-/* เอฟเฟกต์เล็กน้อยเวลาโฮเวอร์/กด */
 .nav-link.game-btn:hover {
-  filter: brightness(0.96);
+  filter: brightness(0.95);
+  transform: translateY(-2px);
 }
+
 .nav-link.game-btn:active {
   transform: translateY(1px);
 }
@@ -259,17 +251,32 @@ h2 {
   right: 10px;
   background-color: #ff4d4d;
   color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
   font-size: 0.8rem;
   font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* News Section */
+/* 📰 News Section */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
+  margin-top: 30px;
+}
+
+.news-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
 .news-card .mdc-card__media {
@@ -282,11 +289,22 @@ h2 {
 
 .news-card h3 {
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 8px;
+  color: #222;
 }
 
 .news-card p {
-  font-size: 0.8rem;
-  color: #757575;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* 🌀 แถบโหลดหรือข้อความว่าง */
+.loading-message,
+.no-games-message,
+.no-coupons-message {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
