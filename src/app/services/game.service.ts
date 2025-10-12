@@ -49,7 +49,7 @@ export class GameService {
 
   /** สร้างเกมใหม่ (admin) */
   createGame(formData: FormData): Observable<CreateGameResponse> {
-    const url = `${this.API_ENDPOINT}/admin/games`;
+    const url = `${this.API_ENDPOINT}/admin/addgames`;
     return this.http.post<CreateGameResponse>(url, formData, {
       headers: this.getAuthHeaders(),
     });
@@ -89,5 +89,15 @@ export class GameService {
     return this.http.get<SearchResponse>(url, {
       params: { category_id: String(categoryId) },
     });
+  }
+
+  /**
+   * ✅ เพิ่มฟังก์ชันนี้เข้าไปใหม่
+   * ดึงข้อมูล 5 อันดับเกมที่ขายดีที่สุด
+   */
+  getTopSellingGames(): Observable<GetAllGamesResponse> {
+    const url = `${this.API_ENDPOINT}/api/games/top-selling`;
+    // Endpoint นี้เป็น public ไม่ต้องใช้ getAuthHeaders()
+    return this.http.get<GetAllGamesResponse>(url);
   }
 }

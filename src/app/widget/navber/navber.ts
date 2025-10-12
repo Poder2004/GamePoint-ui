@@ -41,7 +41,7 @@ export class Navber {
 
   navLinks = [
     { name: 'แนะนำ', path: '/home' },
-    { name: 'อันดับเกมขายดี', path: '/top-selling' },
+    { name: 'อันดับเกมขายดี', path: '/topgame' },
     { name: 'เติมเงิน/ประวัติการซื้อ', path: '/addwallet' },
     { name: 'ประเภทเกม', path: '/GameType' },
   ];

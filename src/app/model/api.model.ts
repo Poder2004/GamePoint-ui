@@ -187,7 +187,6 @@ export interface SearchResponse {
   data: Game[]; // data เป็น Array ของ Game
 }
 
-// เพิ่ม interface นี้ (ถ้ายังไม่มี)
 export interface CategoryListResponse {
   status: string;
   message: string;
@@ -215,13 +214,14 @@ export interface OrderDetail {
   od_id: number;
   orders_id: number;
   game_id: number;
-  game: Game; // 👈 [แก้ไข] เปลี่ยนจาก Game เป็น game (g ตัวเล็ก)
+  Game: Game;
 }
 
 /**
  * Interface for Order data
  */
 export interface Order {
+  Game: any;
   orders_id: number;
   user_id: number;
   did?: number;
@@ -229,20 +229,20 @@ export interface Order {
   sum_total: number;
   final_total: number;
   order_date: string;
-  order_details: OrderDetail[]; // 👈 [แก้ไข] เปลี่ยนจาก OrderDetails เป็น order_details
+  OrderDetails: OrderDetail[]; // 👈 [แก้ไข] เปลี่ยนจาก OrderDetails เป็น order_details
 }
 
 // api.model.ts
 // ========================= Wallet (Single Source of Truth) =========================
 export interface WalletTopUpReq {
-  user_id: number;          // ใช้ค่า user_id จริงจาก /profile
+  user_id: number; // ใช้ค่า user_id จริงจาก /profile
   amount: number;
   transaction_date?: string;
 }
 
 export interface WalletTopUpRes {
   message: string;
-  wallet: number;           // ยอดเงินคงเหลือหลังเติม
+  wallet: number; // ยอดเงินคงเหลือหลังเติม
 }
 
 export interface WalletHistoryItem {
@@ -260,14 +260,6 @@ export interface WalletHistoryRes {
   status: string;
   message: string;
   data: WalletHistoryItem[];
-}
-
-/**
- * Interface for the response when getting a user's order history
- */
-export interface GetUserOrdersResponse {
-  status: string;
-  data: Order[];
 }
 
 /**
