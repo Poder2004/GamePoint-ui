@@ -13,7 +13,8 @@ import { Subscription } from 'rxjs'; // [เพิ่ม] import Subscription
 import { User } from '../../model/api.model';
 import { UserService } from '../../services/user.service';
 import { Constants } from '../../config/constants';
-import { AuthService } from '../../services/auth.service'; // [แก้ไข] แก้ path import ให้ถูกต้อง
+import { AuthService } from '../../services/auth.service';
+import { Navadmin } from "../../admin/navadmin/navadmin"; // [แก้ไข] แก้ path import ให้ถูกต้อง
 
 @Component({
   selector: 'app-edit-profile',
@@ -27,8 +28,9 @@ import { AuthService } from '../../services/auth.service'; // [แก้ไข] 
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    RouterModule
-  ],
+    RouterModule,
+    Navadmin
+],
   templateUrl: './edit-proflie.html',
   styleUrl: './edit-proflie.scss'
 })
