@@ -7,15 +7,15 @@ import { GameService } from '../../services/game.service';
 import { Constants } from '../../config/constants';
 import { Game, User } from '../../model/api.model';
 import { CartService } from '../../services/cart.service';
-import { MatIconModule } from "@angular/material/icon";
-import { MatToolbar } from "@angular/material/toolbar";
+import { MatIconModule } from '@angular/material/icon';
+
 import { AuthService } from '../../services/auth.service';
-import { Navber } from "../../widget/navber/navber";
+import { Navber } from '../../widget/navber/navber';
 
 @Component({
   selector: 'app-game-details',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatToolbar, RouterModule, Navber],
+  imports: [CommonModule, MatIconModule, RouterModule, Navber],
   templateUrl: './game-details.html',
   styleUrl: './game-details.scss',
 })
@@ -95,11 +95,12 @@ export class GameDetails implements OnInit {
   }
 
   getFullImageUrl(path?: string): string {
-    if (!path) return 'https://placehold.co/600x400/2c2c2e/f2f2f7?text=No+Image';
+    if (!path)
+      return 'https://placehold.co/600x400/2c2c2e/f2f2f7?text=No+Image';
     return `${this.constants.API_ENDPOINT}/${path}`;
   }
 
-   public isProfileOpen = false;
+  public isProfileOpen = false;
   // ฟังก์ชันสำหรับสลับสถานะ (เปิด/ปิด)
   toggleProfileSidebar(): void {
     this.isProfileOpen = !this.isProfileOpen;

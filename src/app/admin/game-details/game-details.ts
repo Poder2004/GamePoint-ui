@@ -4,17 +4,24 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { GameService } from '../../services/game.service';
 import { Game, User } from '../../model/api.model';
 import { Constants } from '../../config/constants';
-import { MatIconModule } from "@angular/material/icon";
-import { MatToolbar } from "@angular/material/toolbar";
+import { MatIconModule } from '@angular/material/icon';
+
 import { AuthService } from '../../services/auth.service';
-import { Navadmin } from "../navadmin/navadmin";
+import { Navadmin } from '../navadmin/navadmin';
 
 @Component({
   selector: 'app-game-details',
   standalone: true,
-  imports: [CommonModule, DatePipe, DecimalPipe, RouterModule, MatIconModule, MatToolbar, Navadmin], // 👈 Import Pipes
+  imports: [
+    CommonModule,
+    DatePipe,
+    DecimalPipe,
+    RouterModule,
+    MatIconModule,
+    Navadmin,
+  ], // 👈 Import Pipes
   templateUrl: './game-details.html',
-  styleUrl: './game-details.scss'
+  styleUrl: './game-details.scss',
 })
 export class GameDetailsadmin implements OnInit {
   game?: Game;
@@ -27,7 +34,7 @@ export class GameDetailsadmin implements OnInit {
     private gameService: GameService,
     private constants: Constants,
     private router: Router,
-     private authService: AuthService,
+    private authService: AuthService
   ) {
     this.isUserLoggedIn = this.authService.isLoggedIn();
 
@@ -39,7 +46,6 @@ export class GameDetailsadmin implements OnInit {
       }
     }
   }
-
 
   ngOnInit(): void {
     // ดึง ID จาก URL
@@ -67,7 +73,8 @@ export class GameDetailsadmin implements OnInit {
   }
 
   getFullImageUrl(path?: string): string {
-    if (!path) return 'https://placehold.co/600x400/2c2c2e/f2f2f7?text=No+Image';
+    if (!path)
+      return 'https://placehold.co/600x400/2c2c2e/f2f2f7?text=No+Image';
     return `${this.constants.API_ENDPOINT}/${path}`;
   }
 
@@ -98,7 +105,7 @@ export class GameDetailsadmin implements OnInit {
           // --- กรณีล้มเหลว ---
           console.error('Delete game failed', err);
           alert('เกิดข้อผิดพลาดในการลบเกม กรุณาลองอีกครั้ง');
-        }
+        },
       });
     }
   }

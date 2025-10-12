@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 // 1. นำเข้า Guards
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
+import { adminGuard } from './guards/admin.guard';
 
 // 2. Import Components (ใช้ชื่อแบบ PascalCase ตามมาตรฐาน)
 import { Register } from './page/register/register';
@@ -17,7 +18,7 @@ import { EditProfile } from './page/edit-proflie/edit-proflie';
 import { Mainadmin } from './admin/mainadmin/mainadmin';
 import { Addgame } from './admin/addgame/addgame';
 import { Historyuser } from './admin/history/history';
-import { adminGuard } from './guards/admin.guard';
+
 import { GameDetails } from './page/game-details/game-details';
 import { SearchResults } from './page/search-results/search-results';
 import { GameDetailsadmin } from './admin/game-details/game-details';
@@ -26,10 +27,7 @@ import { HistoryDetails } from './admin/history-details/history-details';
 
 export const routes: Routes = [
   // --- Routes ที่ไม่ต้องล็อกอิน (Public Routes) ---
-  {
-    path: 'main',
-    component: Main, // หน้าสาธารณะ ไม่ต้องมี Guard
-  },
+
   {
     path: 'login',
     component: Login,
@@ -70,38 +68,44 @@ export const routes: Routes = [
   {
     path: 'GameDetails/:id',
     component: GameDetails,
+    canActivate: [authGuard],
   },
   {
     path: 'GameDetailsadmin/:id',
     component: GameDetailsadmin,
+    canActivate: [authGuard, adminGuard],
   },
-  { 
-    path: 'edit-game/:id', 
+  {
+    path: 'edit-game/:id',
     component: EditGame,
-    canActivate: [authGuard] 
+    canActivate: [authGuard, adminGuard],
   },
-  { 
-    path: 'admin/user-details/:id', 
+  {
+    path: 'admin/user-details/:id',
     component: HistoryDetails,
-    canActivate: [authGuard] 
+    canActivate: [authGuard, adminGuard],
   },
 
   // --- Routes สำหรับ Admin ที่ต้องล็อกอินก่อน ---
   {
     path: 'Mainadmin', // ปรับ path เป็น kebab-case
     component: Mainadmin,
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'addgame', // ปรับ path เป็น kebab-case
     component: Addgame,
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'history',
     component: Historyuser,
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'discounts',
     component: Discounts,
+    canActivate: [authGuard, adminGuard],
   },
 
   {

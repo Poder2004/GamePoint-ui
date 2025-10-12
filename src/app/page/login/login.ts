@@ -8,7 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 // --- สิ่งที่ต้อง Import เพิ่ม ---
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserLogin } from '../../model/api.model'; // Import model มาใช้
 
@@ -23,10 +28,10 @@ import { UserLogin } from '../../model/api.model'; // Import model มาใช�
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+  styleUrls: ['./login.scss'],
 })
 export class Login {
   public hidePassword = true;
@@ -41,7 +46,7 @@ export class Login {
     // 6. สร้างโครงสร้างของฟอร์มพร้อม validation
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]], // field 'username' ต้องไม่เป็นค่าว่าง
-      password: ['', [Validators.required]]  // field 'password' ต้องไม่เป็นค่าว่าง
+      password: ['', [Validators.required]], // field 'password' ต้องไม่เป็นค่าว่าง
     });
   }
 
@@ -56,21 +61,20 @@ export class Login {
 
     this.authService.login(credentials).subscribe({
       next: (response) => {
-        // --- กรณี Login สำเร็จ ---
         console.log('Login successful:', response);
-        // เก็บ token
         localStorage.setItem('authToken', response.token);
-        // ⭐️ เพิ่มบรรทัดนี้: เก็บข้อมูล user ทั้ง object เป็น JSON string
-        localStorage.setItem('currentUser', JSON.stringify(response.user));
 
-         if (response.user.role === 'admin') {
-          // ถ้าเป็น 'admin' ให้ไปที่หน้า Mainadmin
+        // ⭐️ แก้ไข key จาก 'currentUser' ให้เป็น 'userData'
+        // localStorage.setItem('currentUser', JSON.stringify(response.user)); // <-- บรรทัดเดิมที่ผิด
+        localStorage.setItem('userData', JSON.stringify(response.user)); // <-- บรรทัดที่ถูกต้อง 🔑
+
+        if (response.user.role === 'admin') {
           this.router.navigate(['/Mainadmin']);
         } else {
-          // ถ้าเป็น Role อื่นๆ (เช่น 'member') ให้ไปที่หน้า main
           this.router.navigate(['/home']);
         }
       },
+      // ...
     });
   }
 }

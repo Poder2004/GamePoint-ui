@@ -20,6 +20,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
     }
   }
 
-  router.navigate(['/home']);
+  // ถ้าไม่ใช่ admin หรือไม่มีข้อมูล ให้ส่งกลับไปหน้าหลัก
+  router.navigate(['/main']);
   return false;
 };
