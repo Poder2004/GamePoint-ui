@@ -122,6 +122,6 @@ export class EditGame implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/admin/game-details', this.gameId]);
+    this.router.navigate(['/Mainadmin']);
   }
 }
