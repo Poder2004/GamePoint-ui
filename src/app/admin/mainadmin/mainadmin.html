@@ -1,0 +1,52 @@
+<app-navadmin></app-navadmin>
+<div class="admin-container">
+  <div class="content-wrapper">
+    <header class="admin-header">
+      <h1>Admin</h1>
+      <p>รายการ</p>
+    </header>
+
+    <main>
+      <div class="list-header">
+        <h2>รายการเกมทั้งหมด</h2>
+        <button class="btn category-button">ประเภทเกม</button>
+      </div>
+      
+      <!-- เพิ่มส่วนแสดงข้อความ Error -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <!-- ส่วนแสดง "ไม่พบข้อมูล" -->
+      <div *ngIf="!errorMessage && games.length === 0" class="no-data-message">
+        <p>ยังไม่มีเกมในระบบ</p>
+      </div>
+
+      <div class="game-list">
+        <!-- 1. แก้ไข property ให้ตรงกับ Model -->
+        <div *ngFor="let game of games" class="game-item">
+          <div class="game-id-box">
+            <!-- game_id -->
+            <span class="game-id-number">{{ game.game_id }}</span>
+          </div>
+
+          <div class="game-image-container">
+            <!-- 2. เรียกใช้ฟังก์ชัน getFullImageUrl() -->
+            <img [src]="getFullImageUrl(game.image_game)" [alt]="game.title" class="game-image" />
+          </div>
+
+          <div class="game-name">
+            <!-- title -->
+            {{ game.title }}
+          </div>
+
+          <div class="game-details-button-container">
+            <button class="btn details-button" [routerLink]="['/GameDetailsadmin', game.game_id]">
+              ดูรายละเอียด
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

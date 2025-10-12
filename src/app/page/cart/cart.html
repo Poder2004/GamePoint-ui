@@ -1,0 +1,127 @@
+<app-navber [showCartIcon]="false"></app-navber>
+<div class="cart-page-container">
+  <h1 class="page-title">ตะกร้าชำระเงิน</h1>
+
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="main-content">
+      <mat-card class="cart-items-card">
+        <h2 class="section-title">
+          สินค้าในตะกร้า ({{ cartItems.length }} ชิ้น)
+        </h2>
+        <div class="cart-items-list">
+          <div class="cart-item" *ngFor="let item of cartItems">
+            <div class="item-details">
+              <img
+                [src]="getFullImageUrl(item.image)"
+                [alt]="item.name"
+                class="item-image"
+              />
+              <div class="item-info">
+                <span class="item-name">{{ item.name }}</span>
+                <span class="item-price"
+                  >{{ item.price | number : "1.2-2" }} ฿</span
+                >
+              </div>
+            </div>
+            <div class="item-actions">
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="removeItem(item)"
+                aria-label="Remove item"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="summary-card">
+        <mat-card-title>สรุปรายการ</mat-card-title>
+        <mat-card-content>
+          <div class="coupon-section">
+            <h4>เลือกคูปองส่วนลด</h4>
+
+            <p *ngIf="loadingCoupons" class="coupon-status-msg">
+              กำลังโหลดคูปองของคุณ...
+            </p>
+
+            <p
+              *ngIf="!loadingCoupons && availableCoupons.length === 0"
+              class="coupon-status-msg"
+            >
+              คุณยังไม่มีคูปองที่ใช้ได้
+            </p>
+
+            <mat-radio-group
+              *ngIf="!loadingCoupons && availableCoupons.length > 0"
+              class="coupon-radio-group"
+              [(ngModel)]="selectedCoupon"
+              (change)="calculateTotals()"
+            >
+              <mat-radio-button
+                *ngFor="let coupon of availableCoupons"
+                [value]="coupon"
+                [disabled]="subtotal < coupon.min_value"
+                class="coupon-radio-button"
+                (click)="onCouponClick(coupon)"
+              >
+                <div class="coupon-label">
+                  <strong>{{ coupon.name_code }}</strong>
+                  <small
+                    >{{ coupon.description }} (ขั้นต่ำ
+                    {{ coupon.min_value | number }}.-)</small
+                  >
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="summary-details">
+            <div class="summary-row">
+              <span>ราคารวม</span>
+              <span>{{ subtotal | number : "1.2-2" }} ฿</span>
+            </div>
+            <div class="summary-row discount">
+              <span>ส่วนลด</span>
+              <span>- {{ discount | number : "1.2-2" }} ฿</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="summary-row total">
+              <span>ยอดสุทธิ</span>
+              <span>{{ total | number : "1.2-2" }} ฿</span>
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <button mat-stroked-button (click)="goBackToGame()">
+              เลือกซื้อต่อ
+            </button>
+            <button
+              mat-flat-button
+              color="primary"
+              class="checkout-btn"
+              (click)="onCheckout()"
+              [disabled]="isCheckingOut"
+            >
+              <span *ngIf="!isCheckingOut">ชำระเงิน</span>
+              <span *ngIf="isCheckingOut">กำลังดำเนินการ...</span>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-container">
+      <mat-icon class="empty-cart-icon">shopping_cart_off</mat-icon>
+      <h2>ตะกร้าของคุณว่างเปล่า</h2>
+      <p>ดูเหมือนว่าคุณยังไม่ได้เพิ่มสินค้าใดๆ ลงในตะกร้า</p>
+      <button mat-flat-button color="primary" routerLink="/home">
+        กลับไปหน้าหลัก
+      </button>
+    </div>
+  </ng-template>
+</div>

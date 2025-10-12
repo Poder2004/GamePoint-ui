@@ -1,0 +1,176 @@
+/* --- Container หลักของหน้า --- */
+.page-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f9f6f3; /* สีพื้นหลังอ่อนๆ ตามรูป */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 👈 [แก้ไข] เปลี่ยนจาก flex-start เป็น center เพื่อจัดให้อยู่กึ่งกลางแนวตั้ง */
+  font-family: sans-serif;
+  box-sizing: border-box; // ช่วยให้ padding ไม่ทำให้เกิด scrollbar
+}
+
+/* --- การ์ดฟอร์มตรงกลาง --- */
+.form-card {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  width: 100%;
+}
+
+/* --- ส่วนหัวข้อ --- */
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  h1 {
+    font-size: 2.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    color: #888;
+  }
+}
+
+/* --- สไตล์ช่องฟอร์มทั่วไป --- */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box; // เพิ่มเพื่อให้ padding ไม่ทำให้ขนาดเกิน
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #96d2a2;
+    box-shadow: 0 0 0 3px rgba(131, 204, 150, 0.2);
+  }
+}
+
+/* --- แถวสำหรับราคาและประเภท --- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; // ลดระยะห่างลงเล็กน้อย
+}
+
+/* --- ส่วนอัปโหลดรูปภาพ --- */
+.image-upload-box {
+  border: 2px dashed #ddd;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    border-color: #96d2a2;
+    background-color: #fdfdfd;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .upload-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+    text-align: center;
+
+    svg {
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    small {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .image-preview {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+}
+
+/* --- ส่วนแสดงข้อความ Feedback --- */
+.feedback-message {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+
+  &.success {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+  &.error {
+    background-color: #ffebee;
+    color: #f44336;
+  }
+}
+
+
+/* --- ส่วนปุ่ม --- */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+.btn-add {
+  background-color: #83CC96;
+  color: #ffffff;
+}
+
+.btn-cancel {
+  background-color: #f1f1f1;
+  color: #888;
+}

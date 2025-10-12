@@ -1,0 +1,82 @@
+<app-navber></app-navber>
+<div class="wallet-container">
+  <h1 class="page-title">เติมเงิน</h1>
+
+  <!-- แสดงยอดเงินคงเหลือ -->
+  <mat-card class="balance-card" style="margin-bottom: 16px">
+    <mat-card-content>
+      <h2>ยอดเงินคงเหลือ: {{ walletBalance | number }} บาท</h2>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="top-up-section">
+    <mat-card class="history-card">
+      <mat-card-header>
+        <mat-card-title>ประวัติการเติมเงิน</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="history-scroll">
+          <ul class="history-list">
+            <li *ngFor="let item of topUpHistory">
+              <span>{{ item.date }}</span>
+              <span class="amount">{{ item.amount | number }} บาท</span>
+            </li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="form-card">
+      <mat-card-content>
+        <p>กรอกจำนวนเงินหรือเลือกจำนวนเงิน</p>
+
+        <mat-form-field appearance="outline" class="amount-field">
+          <input type="text" placeholder="กรอกหรือเลือกจำนวนเงิน" matInput [formControl]="amountControl"
+            [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }} บาท
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <button mat-flat-button class="confirm-btn" (click)="onTopUp()">
+          ยืนยันการเติมเงิน
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h1 class="page-title">ประวัติการซื้อเกมส์</h1>
+  <mat-card class="purchase-history-card">
+    <mat-card-header>
+      <mat-card-subtitle>
+        จำนวนเกมส์ทั้งหมดในคลังของคุณ {{ purchaseHistory.length }} เกมส์
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- แสดงข้อความเมื่อไม่มีข้อมูล -->
+      <div *ngIf="purchaseHistory.length === 0" class="empty-state">
+        คุณยังไม่มีประวัติการซื้อเกม
+      </div>
+
+      <!-- วนลูป Orders -->
+      <ng-container *ngFor="let order of purchaseHistory">
+        <!-- วนลูป OrderDetails ที่อยู่ในแต่ละ Order -->
+        <div class="purchase-item" *ngFor="let detail of order.order_details">
+          <div class="game-info">
+            <!-- เรียกใช้ getFullImageUrl() และใช้ข้อมูลจาก 'game' object -->
+            <img [src]="getFullImageUrl(detail.game.image_game)" alt="{{ detail.game.title }}" />
+            <span>{{ detail.game.title }}</span>
+          </div>
+          <div class="purchase-details">
+            <!-- ใช้ข้อมูลจาก 'order' object -->
+            <span>วันที่ซื้อ {{ order.order_date | date: 'dd MMM yyyy' }}</span>
+            <span class="price">{{ order.final_total | number: '1.2-2' }} บาท</span>
+          </div>
+        </div>
+      </ng-container>
+
+    </mat-card-content>
+  </mat-card>
+</div>
