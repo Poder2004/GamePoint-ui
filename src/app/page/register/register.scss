@@ -6,7 +6,7 @@
 .login-page-container {
     height: 100vh;
     width: 100%;
-    background-color: #383838;
+    background-color: #ffffff;
     /* สีพื้นหลังเทาเข้ม */
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
 
 /* --- Header --- */
 .page-header {
-    color: #9FCC70;
+    color: #000000;
     padding: 2rem 4rem;
     display: flex;
     align-items: center;
@@ -34,11 +34,11 @@
 .page-header .page-title {
     font-family: 'New Rocker', cursive;
     font-size: 3.5rem;
-    color: #9FCC70;
+    color: #0e100b;
     position: absolute;
     left: 45%;
     transform: translateX(-50%);
-    margin-top: 300px;
+    margin-top: 180px;
 }
 
 /* --- Main Content (แบ่งเป็น 2 คอลัมน์) --- */
@@ -127,7 +127,7 @@
     padding: 1rem 2.5rem 3rem 2.5rem !important;
     border-radius: 20px !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    height: 500px;
+    height: 530px;
     position: relative;
     z-index: 10;
     margin-left: -19px;
@@ -147,6 +147,7 @@
         font-size: 28px;
         height: 28px;
         width: 28px;
+        right: 10px;
     }
 }
 
@@ -171,7 +172,7 @@
     display: flex;
     justify-content: center;
     /* จัดให้อยู่ตรงกลางแนวนอน */
-    margin-top: 1rem;
+ 
 
 }
 
@@ -203,12 +204,14 @@
     height: 50px;
     font-size: 1.3rem;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    
+    
 }
 
 /* --- สำหรับรูปภาพตัวละคร --- */
 .character-image-container {
     position: absolute;
-    left: 10%;
+    left: 5%;
     top: 35%;
     z-index: 11; // ให้อยู่บนสุด
     width: 100px;
@@ -226,27 +229,38 @@
 }
 
 .profile-pic-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
 
-    img {
-        width: 100px; // ขนาดรูป
-        height: 100px;
-        border-radius: 50%; // ทำให้เป็นวงกลม
-        object-fit: cover; // ทำให้รูปเต็มกรอบโดยไม่เสียสัดส่วน
-        cursor: pointer; // ทำให้ดูเหมือนกดได้
-    }
+.profile-pic-container img {
+  width: 100px;            /* ปรับขนาดตามต้องการ */
+  height: 100px;           /* ให้เท่ากันกับ width เพื่อเป็นวงกลม */
+  border-radius: 50%;      /* ทำให้เป็นวงกลม */
+  object-fit: cover;       /* ครอบรูปให้พอดีโดยไม่บิด */
+  border: 3px solid #ccc;  /* เส้นขอบบางๆ ดูเป็นกรอบ */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
-    .profile-pic-btn {
-        width: 100px;
-        height: 100px;
-        border: 2px dashed #ccc;
-        border-radius: 50%;
-        mat-icon {
-            font-size: 48px;
-            width: 48px;
-            height: 48px;
-        }
-    }
+.profile-pic-container img:hover {
+  transform: scale(1.05); /* ซูมเล็กน้อยเวลา hover */
+}
+
+.profile-pic-btn {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic-btn mat-icon {
+  font-size: 48px;
+  color: #777;
 }

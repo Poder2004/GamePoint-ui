@@ -1,66 +1,88 @@
 <div class="login-page-container">
+  <header class="page-header">
+    <span class="logo-top">Game Point</span>
+    <span class="page-title">Sing In</span>
+  </header>
 
-    <header class="page-header">
-        <span class="logo-top">Game Oracle</span>
-        <span class="page-title">Sing In</span>
-    </header>
+  <main class="main-content">
+    <div class="character-image-container">
+      <img src="assets/images/image_login.png" alt="Login Character Image" />
+    </div>
 
-    <main class="main-content">
+    <div class="info-pane">
+      <mat-card class="info-card">
+        <h2>Game Point</h2>
+        <h3>บัญชีเดียวสำหรับบริการทั้งหมดของ GamePoint</h3>
+        <p>
+          สวัสดี! คุณยังไม่มีบัญชีใช่ไหม?
+          มาสร้างบัญชีเพื่อรับสิทธิพิเศษและประสบการณ์การเล่นเกมของคุณแบบไม่เหมือนใครกับ
+          GamePoint
+        </p>
+        <button
+          mat-flat-button
+          class="create-account-btn"
+          routerLink="/register"
+        >
+          สร้างบัญชีใหม่
+        </button>
+      </mat-card>
+    </div>
 
-        <div class="character-image-container">
-            <img src="assets/images/image_login.png" alt="Login Character Image">
-        </div>
+    <div class="login-pane">
+      <mat-card class="login-card">
+        <mat-card-content>
+          <h2 class="login-title">ลงชื่อเข้าใช้</h2>
 
-        <div class="info-pane">
-            <mat-card class="info-card">
-                <h2>Game Oracle</h2>
-                <h3>บัญชีเดียวสำหรับบริการทั้งหมดของ GameOracle</h3>
-                <p>
-                    สวัสดี! คุณยังไม่มีบัญชีใช่ไหม?
-                    มาสร้างบัญชีเพื่อรับสิทธิพิเศษและประสบการณ์การเล่นเกมของคุณแบบไม่เหมือนใครกับ GameOracle
-                </p>
-                <button mat-flat-button class="create-account-btn" routerLink="/register">สร้างบัญชีใหม่</button>
-            </mat-card>
-        </div>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" class="login-field">
+              <mat-icon matPrefix>person</mat-icon>
+              <input
+                matInput
+                formControlName="username"
+                placeholder="ชื่อผู้ใช้"
+              />
+            </mat-form-field>
 
-        <div class="login-pane">
-            <mat-card class="login-card">
-                <mat-card-content>
-                    <h2 class="login-title">ลงชื่อเข้าใช้</h2>
+            <mat-form-field appearance="fill" class="login-field">
+              <mat-icon matPrefix>lock</mat-icon>
+              <input
+                matInput
+                formControlName="password"
+                [type]="hidePassword ? 'password' : 'text'"
+                placeholder="รหัสผ่าน"
+              />
+              <button
+                type="button"
+                mat-icon-button
+                matSuffix
+                (click)="hidePassword = !hidePassword"
+                aria-label="Toggle password visibility"
+              >
+                <mat-icon>{{
+                  hidePassword ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
 
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="loginError" class="login-error-message">
+              {{ loginError }}
+            </div>
 
-                        <mat-form-field appearance="fill" class="login-field">
-                            <mat-icon matPrefix>person</mat-icon>
-                            <input matInput formControlName="username" placeholder="ชื่อผู้ใช้">
-                        </mat-form-field>
+            <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
 
-                        <mat-form-field appearance="fill" class="login-field">
-                            <mat-icon matPrefix>lock</mat-icon>
-                            <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'"
-                                placeholder="รหัสผ่าน">
-                            <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
-                                aria-label="Toggle password visibility">
-                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                            </button>
-                        </mat-form-field>
-
-                        <div *ngIf="loginError" class="login-error-message">
-                            {{ loginError }}
-                        </div>
-
-                        <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
-
-                        <div class="actions">
-                            <button type="submit" mat-flat-button class="login-btn" [disabled]="loginForm.invalid">
-                                เข้าสู่ระบบ
-                            </button>
-                        </div>
-
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        </div>
-
-    </main>
+            <div class="actions">
+              <button
+                type="submit"
+                mat-flat-button
+                class="login-btn"
+                [disabled]="loginForm.invalid"
+              >
+                เข้าสู่ระบบ
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </main>
 </div>
