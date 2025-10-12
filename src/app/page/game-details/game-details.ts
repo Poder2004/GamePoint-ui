@@ -10,11 +10,12 @@ import { CartService } from '../../services/cart.service';
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbar } from "@angular/material/toolbar";
 import { AuthService } from '../../services/auth.service';
+import { Navber } from "../../widget/navber/navber";
 
 @Component({
   selector: 'app-game-details',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatToolbar,RouterModule],
+  imports: [CommonModule, MatIconModule, MatToolbar, RouterModule, Navber],
   templateUrl: './game-details.html',
   styleUrl: './game-details.scss',
 })

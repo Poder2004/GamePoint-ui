@@ -9,9 +9,8 @@
     <main>
       <div class="list-header">
         <h2>รายการเกมทั้งหมด</h2>
-        <button class="btn category-button">ประเภทเกม</button>
       </div>
-      
+
       <!-- เพิ่มส่วนแสดงข้อความ Error -->
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
@@ -32,7 +31,11 @@
 
           <div class="game-image-container">
             <!-- 2. เรียกใช้ฟังก์ชัน getFullImageUrl() -->
-            <img [src]="getFullImageUrl(game.image_game)" [alt]="game.title" class="game-image" />
+            <img
+              [src]="getFullImageUrl(game.image_game)"
+              [alt]="game.title"
+              class="game-image"
+            />
           </div>
 
           <div class="game-name">
@@ -41,7 +44,10 @@
           </div>
 
           <div class="game-details-button-container">
-            <button class="btn details-button" [routerLink]="['/GameDetailsadmin', game.game_id]">
+            <button
+              class="btn details-button"
+              [routerLink]="['/GameDetailsadmin', game.game_id]"
+            >
               ดูรายละเอียด
             </button>
           </div>

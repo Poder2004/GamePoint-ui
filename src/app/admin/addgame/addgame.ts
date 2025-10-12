@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Navadmin } from '../navadmin/navadmin';
 import { FormsModule, NgForm } from '@angular/forms'; // <-- 1. Import FormsModule และ NgForm
 import { GameService } from '../../services/game.service'; // <-- 2. Import GameService
-import { Category } from '../../model/api.model'; 
+import { Category } from '../../model/api.model';
 
 @Component({
   selector: 'app-addgame',
@@ -12,15 +12,15 @@ import { Category } from '../../model/api.model';
   templateUrl: './addgame.html',
   styleUrls: ['./addgame.scss'],
 })
-export class Addgame implements OnInit { 
+export class Addgame implements OnInit {
   previewUrl: string | ArrayBuffer | null = null;
   selectedFile: File | null = null; // <-- 4. เพิ่มตัวแปรเก็บไฟล์ที่เลือก
 
   // สมมติว่ามีประเภทเกมเหล่านี้ (ควรดึงมาจาก API ในอนาคต)
-   categories: Category[] = [];
+  categories: Category[] = [];
 
   constructor(private gameService: GameService) {} // <-- 5. Inject GameService
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.loadCategories();
   }
 
@@ -32,7 +32,7 @@ export class Addgame implements OnInit {
       error: (err) => {
         console.error('Failed to load categories', err);
         alert('ไม่สามารถโหลดข้อมูลประเภทเกมได้');
-      }
+      },
     });
   }
 
@@ -73,7 +73,10 @@ export class Addgame implements OnInit {
       },
       error: (err) => {
         console.error('Error creating game:', err);
-        alert('เกิดข้อผิดพลาด: ' + (err.error?.error || 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้'));
+        alert(
+          'เกิดข้อผิดพลาด: ' +
+            (err.error?.error || 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้')
+        );
       },
     });
   }

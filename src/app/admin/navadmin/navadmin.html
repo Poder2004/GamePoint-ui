@@ -1,82 +1,105 @@
-
 <mat-toolbar class="top-toolbar">
-    <span class="logo">Game Oracle</span>
-    <span class="spacer"></span>
+  <span class="logo">Game Point</span>
+  <span class="spacer"></span>
 
-    <ng-container *ngIf="!isUserLoggedIn">
-        <button mat-flat-button class="auth-button login-btn" routerLink="/login">LOGIN</button>
-        <button mat-flat-button class="auth-button signup-btn" routerLink="/register">SIGN UP</button>
-    </ng-container>
+  <ng-container *ngIf="!isUserLoggedIn">
+    <button mat-flat-button class="auth-button login-btn" routerLink="/login">
+      LOGIN
+    </button>
+    <button
+      mat-flat-button
+      class="auth-button signup-btn"
+      routerLink="/register"
+    >
+      SIGN UP
+    </button>
+  </ng-container>
 </mat-toolbar>
 
 <div class="nav-action-bar">
-    <button *ngIf="isUserLoggedIn" mat-icon-button class="hamburger-menu-btn" (click)="toggleProfileSidebar()"
-        aria-label="Open Profile Menu">
-        <mat-icon>menu</mat-icon>
+  <button
+    *ngIf="isUserLoggedIn"
+    mat-icon-button
+    class="hamburger-menu-btn"
+    (click)="toggleProfileSidebar()"
+    aria-label="Open Profile Menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="nav-links-container">
+    <button
+      *ngFor="let link of navLinks"
+      mat-button
+      class="nav-link"
+      [class.active]="link.name === activeLink"
+      (click)="setActiveLink(link.name)"
+      [routerLink]="link.path"
+    >
+      {{ link.name }}
     </button>
+  </div>
 
-    <div class="nav-links-container">
-        <button *ngFor="let link of navLinks" mat-button class="nav-link" [class.active]="link.name === activeLink"
-            (click)="setActiveLink(link.name)" [routerLink]="link.path"> {{ link.name }}
-        </button>
-    </div>
-
-    <mat-form-field class="search-form-field" appearance="outline">
-        <input matInput placeholder="ค้นหา">
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+  <mat-form-field class="search-form-field" appearance="outline">
+    <input matInput placeholder="ค้นหา" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 </div>
 
-
-<div class="profile-overlay" [class.open]="isProfileOpen" (click)="toggleProfileSidebar()">
-</div>
+<div
+  class="profile-overlay"
+  [class.open]="isProfileOpen"
+  (click)="toggleProfileSidebar()"
+></div>
 
 <aside class="profile-sidebar" [class.open]="isProfileOpen">
-    <div *ngIf="currentUser" class="profile-details">
-        <div class="avatar-container">
-            <img [src]="currentUser.image_profile" alt="User Avatar">
-        </div>
-        <h2>ข้อมูลส่วนตัว</h2>
-
-        <div class="info-field">
-            <label>Name User</label>
-            <div class="info-value">
-                <mat-icon>person</mat-icon>
-                <span>{{ currentUser.username }}</span>
-            </div>
-        </div>
-        <div class="info-field">
-            <label>Gmail User</label>
-            <div class="info-value">
-                <mat-icon>mail</mat-icon>
-                <span>{{ currentUser.email }}</span>
-            </div>
-        </div>
-        <div class="info-field">
-            <label>Wallet Balance</label>
-            <div class="info-value">
-                <mat-icon>account_balance_wallet</mat-icon>
-                <span>{{ currentUser.wallet | number:'1.2-2' }}</span>
-            </div>
-        </div>
+  <div *ngIf="currentUser" class="profile-details">
+    <div class="avatar-container">
+      <img [src]="currentUser.image_profile" alt="User Avatar" />
     </div>
+    <h2>ข้อมูลส่วนตัว</h2>
 
-    <div class="sidebar-footer">
-    
-    <button mat-flat-button class="footer-btn primary-btn">
+    <div class="info-field">
+      <label>Name User</label>
+      <div class="info-value">
         <mat-icon>person</mat-icon>
-        <span>แก้ไขโปรไฟล์</span>
-    </button>
-    
-    <button mat-flat-button class="footer-btn primary-btn" routerLink="/Mainadmin">
-        <mat-icon>home</mat-icon>
-        <span>หน้าหลัก</span>
-    </button>
-    
-    <button mat-flat-button class="footer-btn secondary-btn" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>ออกจากระบบ</span>
+        <span>{{ currentUser.username }}</span>
+      </div>
+    </div>
+    <div class="info-field">
+      <label>Gmail User</label>
+      <div class="info-value">
+        <mat-icon>mail</mat-icon>
+        <span>{{ currentUser.email }}</span>
+      </div>
+    </div>
+    <div class="info-field">
+      <label>Wallet Balance</label>
+      <div class="info-value">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>{{ currentUser.wallet | number : "1.2-2" }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <button mat-flat-button class="footer-btn primary-btn">
+      <mat-icon>person</mat-icon>
+      <span>แก้ไขโปรไฟล์</span>
     </button>
 
-</div>
+    <button
+      mat-flat-button
+      class="footer-btn primary-btn"
+      routerLink="/Mainadmin"
+    >
+      <mat-icon>home</mat-icon>
+      <span>หน้าหลัก</span>
+    </button>
+
+    <button mat-flat-button class="footer-btn secondary-btn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>ออกจากระบบ</span>
+    </button>
+  </div>
 </aside>

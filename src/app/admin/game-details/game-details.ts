@@ -7,11 +7,12 @@ import { Constants } from '../../config/constants';
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbar } from "@angular/material/toolbar";
 import { AuthService } from '../../services/auth.service';
+import { Navadmin } from "../navadmin/navadmin";
 
 @Component({
   selector: 'app-game-details',
   standalone: true,
-  imports: [CommonModule, DatePipe, DecimalPipe, RouterModule, MatIconModule, MatToolbar], // 👈 Import Pipes
+  imports: [CommonModule, DatePipe, DecimalPipe, RouterModule, MatIconModule, MatToolbar, Navadmin], // 👈 Import Pipes
   templateUrl: './game-details.html',
   styleUrl: './game-details.scss'
 })

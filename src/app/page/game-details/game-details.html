@@ -1,18 +1,6 @@
-
+<app-navber></app-navber>
 
 <div class="page-container" *ngIf="game; else loadingOrError">
-    <mat-toolbar class="top-toolbar">
-    <span class="logo">Game Oracle</span>
-  </mat-toolbar>
-  <button
-    mat-icon-button
-    class="hamburger-menu-btn"
-    (click)="toggleProfileSidebar()"
-    aria-label="Open Profile Menu"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-
   <!-- ส่วนหัวข้อหลัก -->
   <div class="header-section">
     <h1>รายละเอียดเกมส์</h1>
@@ -22,7 +10,11 @@
   <div class="detail-card">
     <!-- คอลัมน์รูปภาพ (ซ้าย) -->
     <div class="image-column">
-      <img [src]="getFullImageUrl(game.image_game)" [alt]="game.title" class="game-cover-image"/>
+      <img
+        [src]="getFullImageUrl(game.image_game)"
+        [alt]="game.title"
+        class="game-cover-image"
+      />
     </div>
 
     <!-- คอลัมน์ข้อมูล (ขวา) -->
@@ -31,9 +23,9 @@
 
       <!-- ข้อมูล ราคา, ประเภท, และวันที่วางจำหน่าย -->
       <p class="game-meta">
-        ราคา : {{ game.price | number: '1.2-2' }} ฿ | 
-        ประเภท : {{ categoryName || 'N/A' }} | 
-        วันที่วางจำหน่าย : {{ game.release_date | date: 'dd MMM yyyy' }}
+        ราคา : {{ game.price | number : "1.2-2" }} ฿ | ประเภท :
+        {{ categoryName || "N/A" }} | วันที่วางจำหน่าย :
+        {{ game.release_date | date : "dd MMM yyyy" }}
       </p>
 
       <h3 class="about-title">เกี่ยวกับ {{ game.title }}</h3>
@@ -46,7 +38,14 @@
     <button class="btn btn-add-to-cart" (click)="addToCart(game)">
       <span>เพิ่มลงตะกร้า</span>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 10h10l-1 9H8l-1-9zm12-2h-3.2l-2.4-4H10.6l-2.4 4H5a1 1 0 0 0 0 2h14a1 1 0 1 0 0-2zM10 12v5m4-5v5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+          d="M7 10h10l-1 9H8l-1-9zm12-2h-3.2l-2.4-4H10.6l-2.4 4H5a1 1 0 0 0 0 2h14a1 1 0 1 0 0-2zM10 12v5m4-5v5"
+          stroke="currentColor"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
     </button>
   </div>
