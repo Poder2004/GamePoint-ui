@@ -1,19 +1,6 @@
 <mat-toolbar class="top-toolbar">
   <span class="logo">Game Point</span>
   <span class="spacer"></span>
-
-  <ng-container *ngIf="!isUserLoggedIn">
-    <button mat-flat-button class="auth-button login-btn" routerLink="/login">
-      LOGIN
-    </button>
-    <button
-      mat-flat-button
-      class="auth-button signup-btn"
-      routerLink="/register"
-    >
-      SIGN UP
-    </button>
-  </ng-container>
 </mat-toolbar>
 
 <div class="nav-action-bar">
@@ -55,7 +42,10 @@
 <aside class="profile-sidebar" [class.open]="isProfileOpen">
   <div *ngIf="currentUser" class="profile-details">
     <div class="avatar-container">
-      <img [src]="currentUser.image_profile" alt="User Avatar" />
+      <img
+        [src]="userImageUrl || 'assets/images/default-avatar.png'"
+        alt="User Avatar"
+      />
     </div>
     <h2>ข้อมูลส่วนตัว</h2>
 
@@ -83,7 +73,11 @@
   </div>
 
   <div class="sidebar-footer">
-    <button mat-flat-button class="footer-btn primary-btn">
+    <button
+      mat-flat-button
+      class="footer-btn primary-btn"
+      routerLink="/editprofile"
+    >
       <mat-icon>person</mat-icon>
       <span>แก้ไขโปรไฟล์</span>
     </button>

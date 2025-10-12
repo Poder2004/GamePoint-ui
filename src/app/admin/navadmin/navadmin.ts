@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
-// --- Import Angular Material Modules ---
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +9,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../model/api.model';
+import { UserService } from '../../services/user.service';
+import { Constants } from '../../config/constants';
 
 @Component({
   selector: 'app-navadmin',
@@ -23,58 +23,89 @@ import { User } from '../../model/api.model';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   templateUrl: './navadmin.html',
   styleUrl: './navadmin.scss',
 })
 export class Navadmin {
-   public isUserLoggedIn: boolean = false
-   public currentUser: User | null = null; 
+  public isUserLoggedIn: boolean = false;
+  public currentUser: User | null = null;
+  public userImageUrl: string | null = null;
+  public isProfileOpen = false;
 
-    navLinks = [
-    { name: 'หน้าหลัก', path: '/Mainadmin' }, // ตัวอย่าง: ลิงก์ไปหน้า home
-    { name: 'เพิ่มรายการใหม่', path: '/addgame' }, // ตัวอย่าง
-    { name: 'โค้ดส่วนลด', path: '/discounts' }, // <-- นี่คือลิงก์เป้าหมายของคุณ
-    { name: 'ประวัติการทำธุรกรรม', path: '/history' } // ตัวอย่าง
+  navLinks = [
+    { name: 'หน้าหลัก', path: '/Mainadmin' },
+    { name: 'เพิ่มรายการใหม่', path: '/addgame' },
+    { name: 'โค้ดส่วนลด', path: '/discounts' },
+    { name: 'ประวัติการทำธุรกรรม', path: '/history' },
   ];
 
   activeLink = this.navLinks[0].name;
 
-  setActiveLink(linkName: string): void {
-    this.activeLink = linkName;
-    // เมื่อตัวแปร activeLink เปลี่ยนไป Angular จะอัปเดตหน้าเว็บให้เอง!
-  }
-  public isProfileOpen = false; // ตัวแปรควบคุมสถานะของ Sidebar (เริ่มต้นคือปิด)
-
-  // ฟังก์ชันสำหรับสลับสถานะ (เปิด/ปิด)
-  toggleProfileSidebar(): void {
-    this.isProfileOpen = !this.isProfileOpen;
-  }
-
-
   constructor(
+    private constants: Constants,
     private authService: AuthService,
-    private router: Router
-  ) { 
+    private router: Router,
+    private userService: UserService
+  ) {
     this.isUserLoggedIn = this.authService.isLoggedIn();
 
-    // 2. ดึงข้อมูลผู้ใช้จาก localStorage ถ้ามี
     if (this.isUserLoggedIn) {
-      const userJson = localStorage.getItem('currentUser');
+      // 🔑 แก้ไข: อ่านจาก 'userData'
+      const userJson = localStorage.getItem('userData');
       if (userJson) {
-        this.currentUser = JSON.parse(userJson); // แปลง JSON string กลับเป็น Object
+        this.currentUser = JSON.parse(userJson);
+        this.buildUserImageUrl();
       }
     }
   }
-  
-  // 3. สร้างฟังก์ชันสำหรับ Logout
+
+  setActiveLink(linkName: string): void {
+    this.activeLink = linkName;
+  }
+
+  toggleProfileSidebar(): void {
+    if (!this.isProfileOpen) {
+      this.refreshUserProfileData();
+    }
+    this.isProfileOpen = !this.isProfileOpen;
+  }
+
+  private refreshUserProfileData(): void {
+    this.userService.getProfile().subscribe({
+      next: (response) => {
+        if (response && response.user) {
+          this.currentUser = response.user;
+          // 🔑 แก้ไข: อัปเดตที่ 'userData'
+          localStorage.setItem('userData', JSON.stringify(this.currentUser));
+          this.buildUserImageUrl();
+        }
+      },
+      error: (err) => {
+        console.error('Failed to refresh user profile:', err);
+        if (err.status === 401) {
+          this.logout();
+        }
+      },
+    });
+  }
+
+  private buildUserImageUrl(): void {
+    if (this.currentUser && this.currentUser.image_profile) {
+      this.userImageUrl = `${this.constants.API_ENDPOINT}/${this.currentUser.image_profile}`;
+    } else {
+      // สามารถใส่ URL รูป default ได้ที่นี่
+      this.userImageUrl = null;
+    }
+  }
+
   logout(): void {
-    localStorage.removeItem('authToken'); // ลบ token
-    localStorage.removeItem('currentUser'); // ลบข้อมูล user
-    this.router.navigate(['/login']); // กลับไปหน้า login
-    
-    // (Optional) รีเฟรชหน้าเพื่อให้ component อัปเดตสถานะทันที
-    window.location.reload(); 
+    localStorage.removeItem('authToken');
+    // 🔑 แก้ไข: ลบ 'userData'
+    localStorage.removeItem('userData');
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    });
   }
 }
