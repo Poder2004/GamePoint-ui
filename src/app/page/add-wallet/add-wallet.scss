@@ -3,7 +3,7 @@
 }
 
 .wallet-container {
-  background-color: #545454;
+  background-color: #ffffff;
   padding: 2rem 6rem;
 }
 
@@ -13,6 +13,7 @@
   font-size: 2.5rem;
   font-weight: 600;
   margin-bottom: 2rem;
+  color: #000;
 }
 
 /* --- ส่วนเติมเงิน --- */
@@ -24,8 +25,8 @@
 }
 
 mat-card {
-  background-color: #E6E6E6 !important;
-  color: #333;
+  background-color: #E4E4E4 !important;
+  color: #000000;
   border-radius: 20px !important;
   padding: 1.5rem !important;
 }
@@ -73,7 +74,7 @@ mat-card-header {
 
   p {
     font-size: 1.1rem;
-    color: #555;
+    color: #000000;
   }
 }
 
@@ -87,7 +88,7 @@ mat-card-header {
 
 .confirm-btn {
   background-color: #9FCC70 !important;
-  color: #333;
+  color: #000000;
   padding: 1.5rem 2rem !important;
   font-size: 1.1rem;
   border-radius: 12px !important;
@@ -142,12 +143,12 @@ mat-card-header {
   align-items: center;
   gap: 3rem;
   font-size: 1.1rem;
-  color: #555;
+  color: #000000;
 
   .price {
     font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: #000000;
   }
 }
 
