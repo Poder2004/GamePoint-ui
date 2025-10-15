@@ -2,7 +2,8 @@
 .page-container {
   min-height: 100vh;
   padding: 2rem;
-  background-color: #ffffff; /* สีพื้นหลังอ่อนๆ ตามรูป */
+background-color: #f9f9f9;
+; /* สีพื้นหลังอ่อนๆ ตามรูป */
   display: flex;
   justify-content: center;
   align-items: center; /* 👈 [แก้ไข] เปลี่ยนจาก flex-start เป็น center เพื่อจัดให้อยู่กึ่งกลางแนวตั้ง */
@@ -12,7 +13,8 @@
 
 /* --- การ์ดฟอร์มตรงกลาง --- */
 .form-card {
-  background-color: #ffffff;
+ background-color: #f9f9f9;
+ 
   padding: 2.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
