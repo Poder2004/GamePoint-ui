@@ -4,8 +4,8 @@
 :host {
     font-family: 'Noto Sans Thai', sans-serif;
     display: block;
-    background-color: #f5f5f5; /* เปลี่ยนพื้นหลังหลักเป็นสีเทาอ่อนๆ */
-    padding: 0.5rem 40px 0 40px; /* ลด padding ด้านบนและล่างลง */
+    background-color: #f9f9f9;
+    padding: 0.5rem 40px 0 40px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     overflow: hidden;
@@ -18,37 +18,37 @@
 /* --- Header ด้านบนสุด --- */
 .top-toolbar {
     background-color: transparent;
-    color: #1C1C1E; /* เปลี่ยนสีตัวหนังสือเป็นสีดำเข้ม */
+    color: #1C1C1E;
     padding: 0;
-    margin-bottom: 0.5rem; /* ลดระยะห่างด้านล่าง */
+    margin-bottom: 0.5rem;
 }
 
 .logo {
     font-family: 'New Rocker', cursive;
-    font-size: 2.2rem; /* ลดขนาดโลโก้เล็กน้อย */
+    font-size: 2.2rem;
 }
 
 .auth-button {
-    height: 36px; /* ลดความสูงปุ่ม */
+    height: 36px;
     padding: 0 18px;
     border-radius: 8px;
     font-weight: 500;
     margin-left: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #1C1C1E; /* เพิ่มเส้นขอบ */
+    border: 1px solid #f6f6f8;
 }
 
 .auth-button.login-btn {
-    background-color: #1C1C1E; /* พื้นหลังดำ */
-    color: #FFFFFF; /* ตัวหนังสือขาว */
+    background-color: #1C1C1E;
+    color: #FFFFFF;
 }
 
 .auth-button.signup-btn {
-    background-color: #FFFFFF; /* พื้นหลังขาว */
-    color: #1C1C1E; /* ตัวหนังสือดำ */
+    background-color: #FFFFFF;
+    color: #1C1C1E;
 }
 
-/* --- แถบเมนูหลัก (สไตล์ใหม่ ธีมดำ-ขาว) --- */
+/* --- แถบเมนูหลัก --- */
 .nav-action-bar {
     display: flex;
     justify-content: space-between;
@@ -56,42 +56,28 @@
     width: 100%;
 }
 
-/* --- ปุ่ม Hamburger Menu --- */
-.hamburger-menu-btn {
-    position: relative;
-    top: -15px; /* ปรับตำแหน่งให้เข้ากับ nav-bar ใหม่ */
-    width: 44px;
-    height: 44px;
-     color: #1C1C1E !important; 
-}
-
-:host ::ng-deep .hamburger-menu-btn .mat-icon {
-    font-size: 32px; /* ปรับขนาดไอคอน */
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    color: #1C1C1E; /* เปลี่ยนสีไอคอนเป็นสีดำเข้ม */
-}
-/* ส่วนของปุ่ม จัดตำแหน่งเหมือนเดิม */
 .hamburger-menu-btn {
     position: relative;
     top: -15px;
     width: 44px;
     height: 44px;
+    color: #1C1C1E !important;
 }
 
-/* ส่วนของไอคอนข้างในปุ่ม (สำคัญมาก) */
 :host ::ng-deep .hamburger-menu-btn .mat-icon {
-    color: #1c1c1e !important; /* สั่งให้ไอคอนเป็นสีดำเข้ม */
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    color: #1c1c1e !important;
 }
 
-/* --- Container ของลิงก์เมนู --- */
 .nav-links-container {
     width: 800px;
-    height: 50px; /* ลดความสูงลง */
-    background-color: #1C1C1E; /* เปลี่ยนเป็นสีดำ */
-    border-radius: 20px 20px 0 0; /* ปรับความโค้ง */
-    padding: 0 5px; /* ลด padding บน-ล่าง */
+    height: 50px;
+    background-color: #1C1C1E;
+    border-radius: 20px 20px 0 0;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -100,37 +86,34 @@
 
 .nav-links-container .nav-link {
     font-family: 'Inter', sans-serif;
-    font-size: 18px; /* ลดขนาดฟอนต์ */
+    font-size: 18px;
     font-weight: 500;
     min-width: unset;
     padding: 0 15px;
-    height: 36px; /* ลดความสูงปุ่ม */
-    line-height: 36px; /* จัดให้อยู่กลางแนวตั้ง */
+    height: 36px;
+    line-height: 36px;
     border-radius: 15px 12px 0 0;
-    color: #FFFFFF; /* เปลี่ยนสีฟอนต์เป็นสีขาว */
+    color: #FFFFFF;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* --- สไตล์เมื่อลิงก์ Active --- */
 .nav-links-container .nav-link.active {
-    height: 45px; /* ลดความสูงลง */
-    background-color: #4A4A4A; /* เปลี่ยนเป็นสีเทาเข้ม */
-    color: #FFFFFF; /* สีตัวหนังสือยังคงเป็นขาว */
+    height: 45px;
+    background-color: #4A4A4A;
+    color: #FFFFFF;
     font-weight: 600;
     box-shadow: none;
-    margin-bottom: -5px; /* ปรับระยะให้พอดีกับ container */
+    margin-bottom: -5px;
 }
 
-/* --- ช่องค้นหา --- */
 .search-form-field {
     width: 350px;
     background-color: white;
-    height: 48px; /* ลดความสูง */
+    height: 48px;
     border-radius: 10px;
-    margin-top: -16px; /* ปรับตำแหน่ง */
+    margin-top: -16px;
 }
 
-/* --- ตั้งค่าสีไอคอนในช่องค้นหาและปุ่ม Dropdown --- */
 .nav-action-bar mat-icon {
     color: #FFFFFF;
 }
@@ -139,9 +122,10 @@
     color: #333;
 }
 
+
 /*
 =====================================================
-== ส่วนของ Sidebar ไม่ได้แก้ไขตามที่ร้องขอ ==
+== ส่วนของ Sidebar ที่ปรับแก้ให้เล็กลง ==
 =====================================================
 */
 
@@ -169,7 +153,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 350px;
+    width: 320px; // ✅ ลดความกว้างของ Sidebar ลงเล็กน้อย
     height: 100%;
     background-color: #f5f5f5;
     z-index: 2000;
@@ -184,20 +168,20 @@
     transform: translateX(0);
 }
 
-/* รายละเอียดโปรไฟล์ (ไม่แก้ไข) */
+/* รายละเอียดโปรไฟล์ */
 .profile-details {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem; // ✅ ลด Padding ซ้ายขวา
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 1.5rem; // ✅ ลดระยะห่างด้านบน
 }
 
 .avatar-container {
-    width: 120px;
-    height: 120px;
+    width: 90px; // ✅ ลดขนาดรูป
+    height: 90px; // ✅ ลดขนาดรูป
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 1rem;
-    border: 4px solid white;
+    border: 3px solid white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     img {
         width: 100%;
@@ -207,29 +191,30 @@
 }
 
 .profile-details h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem; // ✅ ลดขนาด Font
     font-weight: 500;
     color: #333;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem; // ✅ ลดระยะห่าง
 }
 
 .info-field {
     text-align: left;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem; // ✅ ลดระยะห่าง
     label {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         color: #777;
         display: block;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
     }
     .info-value {
         background-color: #e0e0e0;
-        padding: 0.8rem 1rem;
+        padding: 0.6rem 1rem; // ✅ ลด Padding
         border-radius: 8px;
         display: flex;
         align-items: center;
         color: #333;
         font-weight: 500;
+        font-size: 0.9rem;
         mat-icon {
             margin-right: 0.8rem;
             color: #555;
@@ -237,20 +222,22 @@
     }
 }
 
+/* ส่วนท้ายของ Sidebar (ปุ่มต่างๆ) */
 .sidebar-footer {
-    margin-top: auto;
-    padding: 1.5rem;
+
+    padding: 1rem; // ✅ ลด Padding
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem; // ✅ ลดระยะห่างระหว่างปุ่ม
 }
 
 .footer-btn {
     width: 100%;
-    padding: 1.5rem 0 !important;
-    font-size: 1.1rem;
-    border-radius: 12px !important;
+    padding: 0.8rem 0 !important; // ✅ ลด Padding แนวตั้งของปุ่ม (สำคัญที่สุด)
+    font-size: 0.95rem !important; // ✅ ลดขนาด Font ของปุ่ม
+    border-radius: 10px !important;
     display: flex;
+    justify-content: center; // จัดให้อยู่กลาง
     gap: 0.8rem;
 }
 

@@ -100,4 +100,16 @@ export class GameService {
     // Endpoint นี้เป็น public ไม่ต้องใช้ getAuthHeaders()
     return this.http.get<GetAllGamesResponse>(url);
   }
+
+  /**
+   * ✅ เพิ่มฟังก์ชันนี้เข้าไปใหม่
+   * ดึงรายชื่อเกมทั้งหมดในคลังของผู้ใช้ที่ล็อกอินอยู่
+   */
+  getUserLibrary(): Observable<GetAllGamesResponse> {
+    const url = `${this.API_ENDPOINT}/api/my-library`;
+    // Endpoint นี้ต้องใช้ Token เพราะเป็นข้อมูลส่วนตัว
+    return this.http.get<GetAllGamesResponse>(url, {
+      headers: this.getAuthHeaders(),
+    });
+  }
 }
