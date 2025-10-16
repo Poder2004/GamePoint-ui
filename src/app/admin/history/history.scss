@@ -75,7 +75,7 @@ $accent-color: #e79a4a;
 
   &:hover {
     // 3. ใช้ lighten() กับ Sass Variable ($)
-    background-color: lighten($bg-secondary, 5%);
+
     transform: translateY(-2px);
   }
 }
